@@ -50,8 +50,8 @@ export default {
 }
 .wrapper{
   width:100%;
-  height :0;
-  padding-bottom:26.67%;
+  /*height :0;
+  padding-bottom:26.67%;*/
   background-color :#eee;
   /*overflow: hidden;*/
 
