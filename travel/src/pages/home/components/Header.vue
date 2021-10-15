@@ -6,9 +6,9 @@
       <div class="kw">输入城市/景点/游玩主题</div>
       <input type="text" class="header-input"/>
     </div>
-    <div class="header-right">城市
+    <router-link to="/city" tag="div" class="header-right">城市
       <span class="iconfont">&#xe600;</span>
-    </div>
+    </router-link>
   </div>
 </template>
 
