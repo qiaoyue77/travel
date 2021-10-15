@@ -1,7 +1,7 @@
 <template>
   <div>
     <home-header></home-header>
-    <home-swiper></home-swiper>
+    <home-swiper :swiper-l="swiperList"></home-swiper>
     <home-icons></home-icons>
     <home-recommend></home-recommend>
   </div>
@@ -16,6 +16,11 @@ import HomeRecommend from './components/Recommend'
 import axios from 'axios'
 export default {
   name: "Home",
+  data:function (){
+    return {
+      swiperList:[]
+    }
+  },
   components:{
     HomeHeader,
     HomeSwiper,
@@ -28,7 +33,11 @@ export default {
       .then(this.getHomeInfoSuccess)
     },
     getHomeInfoSuccess(res){
-      console.log(res)
+      if(res.data.ret && res.data.data){
+        var data = res.data.data;
+        this.swiperList = data.swiperList;
+
+      }
     }
   },
   mounted() {
