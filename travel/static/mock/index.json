@@ -1,0 +1,19 @@
+{
+  "ret": true,
+  "data": {
+    "swiperList": [
+      {
+        "id":"001",
+        "imgUrl":"https://img2.baidu.com/it/u=624305276,3006357768&fm=26&fmt=auto"
+      },
+      {
+        "id":"002",
+        "imgUrl":"https://img0.baidu.com/it/u=448111598,3713050274&fm=15&fmt=auto"
+      },
+      {
+        "id":"003",
+        "imgUrl":"https://img0.baidu.com/it/u=3005373703,3971702792&fm=26&fmt=auto"
+      }
+    ]
+  }
+}
