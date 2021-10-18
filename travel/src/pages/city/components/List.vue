@@ -1,65 +1,94 @@
 <template>
-<div class="list">
+<div class="list" ref="listWrapper">
   <div>
-    <div class="hot-cities">
+    <div class="hot-cities" >
       <div class="hot-cts-title">热门城市</div>
       <ul class="clearfix">
-        <li>北京</li>
+        <li v-for="(item,index) in computedCities" :key="item.id"
+            :class="item.borderType">{{item.name}}</li>
       </ul>
     </div>
     <div class="alphabet-menu">
       <div class="alphabet-menu-title">字母排序</div>
       <ul class="clearfix">
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
-        <li>A</li>
+        <li v-for="key in letters" :key="key" @click="handleLetterClick">{{key}}</li>
+
       </ul>
     </div>
-    <div class="alphabet-list">
-      <div class="alphabet-list-title">A</div>
+    <div class="alphabet-list" v-for="(value, key) in cities" :key="key" :ref="key">
+      <div class="alphabet-list-title">{{ key }}</div>
       <ul class="clearfix">
-        <li>阿拉</li>
-        <li>阿拉</li>
-        <li>阿拉</li>
-        <li>阿拉</li>
-        <li>阿拉</li>
+        <li v-for="item in value" :key="item.id">{{item.name}}</li>
+
       </ul>
+
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
-  name: "CityList"
+  name: "CityList",
+  props:{
+    hotCities:Array,
+    cities:Object,
+
+  },
+  data(){
+    return {
+      letter:'',
+      scroll:null
+    }
+  },
+  mounted:function (){
+    this.scroll = new BScroll(this.$refs.listWrapper,{
+      click:true
+    });
+
+  },
+  computed:{
+    computedCities: function (){
+      var result = [];
+      result = this.hotCities.map((item,index) => {
+        item.order = (index +1);
+        if(item.order === 1){
+          item.borderType = ''
+        }else if (item.order === 2 || item.order === 3){
+          item.borderType = 'border-left'
+        }else if (item.order % 3 === 1){
+          item.borderType = 'border-top'
+        }else{
+          item.borderType = 'border-topLeft'
+        }
+
+        return item;
+
+      })
+      return result;
+    },
+    letters:function (){
+      return [...Object.keys(this.cities)];
+    }
+  },
+  methods:{
+    handleLetterClick(e){
+      this.letter = e.target.innerText;
+    }
+  },
+  watch:{
+    letter:function (){
+      var el = this.$refs[this.letter][0];
+      this.scroll.scrollToElement(el)
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
 @import "~@/assets/styles/variable.styl"
+
 .clearfix:after{
   content:"";
   display :block;
@@ -68,6 +97,14 @@ export default {
 div{
   box-sizing :border-box;
 }
+  .list{
+    position:absolute;
+    top:.92rem;
+    left:0;
+    width:100%;
+    height:calc(100% - .92rem);
+    overflow :hidden;
+  }
 .hot-cts-title,
 .alphabet-list-title,
 .alphabet-menu-title{
@@ -98,7 +135,7 @@ div{
   line-height :.9rem;
   text-align center;
   font-size:.23rem;
-  background-color :orange;
+
 
 }
   .alphabet-menu{
@@ -128,5 +165,17 @@ div{
     text-align center;
     font-size:0.25rem;
   }
+}
+  .border-left{
+    border-left:1px solid #eee;
+
+  }
+.border-top{
+  border-top:1px solid #eee;
+
+}
+.border-topLeft{
+  border-left:1px solid #eee;
+  border-top:1px solid #eee;
 }
 </style>
