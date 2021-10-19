@@ -5,7 +5,8 @@
       <div class="hot-cts-title">热门城市</div>
       <ul class="clearfix">
         <li v-for="(item,index) in computedCities" :key="item.id"
-            :class="item.borderType">{{item.name}}</li>
+            :class="item.borderType"
+            @click="handleCityClick(item.name)">{{item.name}}</li>
       </ul>
     </div>
     <div class="alphabet-menu">
@@ -18,7 +19,7 @@
     <div class="alphabet-list" v-for="(value, key) in cities" :key="key" :ref="key">
       <div class="alphabet-list-title">{{ key }}</div>
       <ul class="clearfix">
-        <li v-for="item in value" :key="item.id">{{item.name}}</li>
+        <li v-for="item in value" :key="item.id" @click="handleCityClick(item.name)">{{item.name}}</li>
 
       </ul>
 
@@ -75,7 +76,12 @@ export default {
   methods:{
     handleLetterClick(e){
       this.letter = e.target.innerText;
-    }
+    },
+    handleCityClick(city){
+      this.$store.dispatch('changeCityName', city);
+      this.$router.push('/');
+    },
+
   },
   watch:{
     letter:function (){
