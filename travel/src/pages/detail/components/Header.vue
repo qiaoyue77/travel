@@ -74,6 +74,7 @@ body{
   top:0;
   left:0;
   right:0;
+  z-index 2
   height:.88rem;
   line-height :.88rem;
   text-align center;
