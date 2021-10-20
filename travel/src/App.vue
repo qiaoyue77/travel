@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+
 <!--    多页面应用 请求对应的HTML文件
     首屏时间快
     SEO优化好 查看到所有代码
