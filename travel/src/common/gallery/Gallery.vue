@@ -39,11 +39,11 @@ export default {
       },
       swiperList:[
         {
-          id:'003',
+          id:'aaa',
           imgUrl:'https://img0.baidu.com/it/u=3005373703,3971702792&fm=26&fmt=auto'
         },
         {
-          id:'003',
+          id:'v',
           imgUrl:'https://img0.baidu.com/it/u=3005373703,3971702792&fm=26&fmt=auto'
         }
       ]
