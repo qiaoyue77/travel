@@ -5,17 +5,22 @@
       <div class="banner-num">2754</div>
       <div class="banner-title">上海-泰国</div>
     </div>
-    <common-gallery v-show="isGalleryShow" :img-lists="imgLists"></common-gallery>
+    <common-fade>
+      <common-gallery v-show="isGalleryShow" :img-lists="imgLists"></common-gallery>
+    </common-fade>
+
   </div>
 
 </template>
 
 <script>
 import CommonGallery from 'common/gallery/Gallery'
+import CommonFade from 'common/fade/Fade'
 export default {
   name: "Banner",
   components:{
-    CommonGallery
+    CommonGallery,
+    CommonFade
   },
   data(){
     return {
