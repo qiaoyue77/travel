@@ -44,9 +44,14 @@ export default {
     }
   },
   mounted:function (){
-    this.scroll = new BScroll(this.$refs.listWrapper,{
-      click:true
-    });
+    this.$nextTick(() => {
+      this.pageScroll();
+      /*this.scroll = new BScroll(this.$refs.listWrapper,{
+        click:true,
+        scrollY: true,
+      });*/
+    })
+
 
   },
   computed:{
@@ -74,6 +79,18 @@ export default {
     }
   },
   methods:{
+    pageScroll(){
+      if(!this.scroll){
+        this.$nextTick(() => {
+          this.scroll = new BScroll(this.$refs.listWrapper,{
+            click:true,
+            scrollY: true,
+          });
+        })
+      }else {
+        this.scroll.refresh()
+      }
+    },
     handleLetterClick(e){
       this.letter = e.target.innerText;
     },

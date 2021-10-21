@@ -34,7 +34,7 @@ export default {
         loop:true,
         paginationType:'fraction',
         observer:true,
-        observerParent: true
+        observeParents:true
 
       },
       swiperList:[
